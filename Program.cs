@@ -268,24 +268,27 @@ namespace SistemaInventario
 
 
         // SEARCH: Buscar producto
+
+        // SEARCH: Buscar producto
         static void BuscarProducto()
         {
             Console.Clear();
             Console.WriteLine("BUSCAR PRODUCTO");
 
-            Console.Write("Ingrese el nombre del producto: ");
+            Console.Write("Ingrese el nombre o ID del producto: ");
             string nombre = Console.ReadLine() ?? "";
 
             if (string.IsNullOrWhiteSpace(nombre))
             {
-                Console.WriteLine("Debe escribir un nombre.");
+                Console.WriteLine("Debe escribir un nombre o ID.");
                 return;
             }
 
             List<Producto> encontrados = productos
                 .Where(p => p.Nombre.Contains(
                     nombre.Trim(),
-                    StringComparison.OrdinalIgnoreCase))
+                    StringComparison.OrdinalIgnoreCase)
+                    || p.Id.ToString() == nombre.Trim())
                 .ToList();
 
             if (encontrados.Count == 0)
@@ -302,7 +305,10 @@ namespace SistemaInventario
                 Console.WriteLine($"Precio: {producto.Precio:C}");
                 Console.WriteLine($"Cantidad: {producto.Cantidad}");
             }
+
+            Console.WriteLine($"Productos encontrados: {encontrados.Count}");
         }
+
     }
 
     class Producto
