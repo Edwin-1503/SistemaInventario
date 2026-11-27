@@ -224,6 +224,8 @@ namespace SistemaInventario
         }
 
         // DELETE: Eliminar producto
+
+        // DELETE: Eliminar producto
         static void EliminarProducto()
         {
             Console.Clear();
@@ -233,7 +235,7 @@ namespace SistemaInventario
 
             if (!int.TryParse(Console.ReadLine(), out int id))
             {
-                Console.WriteLine("ID no valido.");
+                Console.WriteLine("ID no válido.");
                 return;
             }
 
@@ -245,10 +247,20 @@ namespace SistemaInventario
                 return;
             }
 
+            Console.Write($"¿Está seguro de eliminar el producto {producto.Nombre}? (S/N): ");
+            string respuesta = Console.ReadLine() ?? "";
+
+            if (respuesta.ToUpper() != "S")
+            {
+                Console.WriteLine("Eliminación cancelada.");
+                return;
+            }
+
             productos.Remove(producto);
 
             Console.WriteLine("Producto eliminado correctamente.");
         }
+
 
         // SEARCH: Buscar producto
         static void BuscarProducto()
