@@ -186,6 +186,7 @@ namespace SistemaInventario
             }
 
             Console.Write("Nuevo precio: ");
+
             if (!decimal.TryParse(Console.ReadLine(), out decimal precio)
                 || precio <= 0)
             {
@@ -194,6 +195,7 @@ namespace SistemaInventario
             }
 
             Console.Write("Nueva cantidad: ");
+
             if (!int.TryParse(Console.ReadLine(), out int cantidad)
                 || cantidad < 0)
             {
@@ -201,7 +203,10 @@ namespace SistemaInventario
                 return;
             }
 
-            producto.Nombre = nombre.Trim();
+            
+
+
+        producto.Nombre = nombre.Trim();
             producto.Precio = precio;
             producto.Cantidad = cantidad;
 
