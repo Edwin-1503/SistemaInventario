@@ -132,29 +132,44 @@ namespace SistemaInventario
 
         // READ: Mostrar productos
         static void MostrarProductos()
+{
+    Console.Clear();
+    Console.WriteLine("==================================");
+    Console.WriteLine("       LISTA DE PRODUCTOS");
+    Console.WriteLine("==================================");
+
+    if (productos.Count == 0)
+    {
+        Console.WriteLine("No hay productos registrados.");
+    }
+    else
+    {
+        Console.WriteLine(
+            "{0,-8} {1,-20} {2,12} {3,12}",
+            "ID", "NOMBRE", "PRECIO", "CANTIDAD");
+
+        Console.WriteLine(
+            "--------------------------------------------------------");
+
+        foreach (Producto producto in productos)
         {
-            Console.Clear();
-            Console.WriteLine("LISTA DE PRODUCTOS");
-
-            if (productos.Count == 0)
-            {
-                Console.WriteLine("No hay productos registrados.");
-                return;
-            }
-
-            foreach (Producto producto in productos)
-            {
-                Console.WriteLine("--------------------------------");
-                Console.WriteLine($"ID: {producto.Id}");
-                Console.WriteLine($"Nombre: {producto.Nombre}");
-                Console.WriteLine($"Precio: {producto.Precio:C}");
-                Console.WriteLine($"Cantidad: {producto.Cantidad}");
-            }
-
-            Console.WriteLine("--------------------------------");
+            Console.WriteLine(
+                "{0,-8} {1,-20} {2,12:C} {3,12}",
+                producto.Id,
+                producto.Nombre,
+                producto.Precio,
+                producto.Cantidad);
         }
 
-        // UPDATE: Editar producto
+        Console.WriteLine(
+            "--------------------------------------------------------");
+
+        Console.WriteLine($"Total de productos: {productos.Count}");
+    }
+
+    Console.WriteLine("\nPresione una tecla para continuar...");
+    Console.ReadKey();
+}
         static void EditarProducto()
         {
             Console.Clear();
