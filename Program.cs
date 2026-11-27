@@ -92,6 +92,15 @@ namespace SistemaInventario
                 return;
             }
 
+            if (productos.Any(p => p.Nombre.Equals(
+                nombre.Trim(),
+                StringComparison.OrdinalIgnoreCase)))
+            {
+                Console.WriteLine("Ya existe un producto con ese nombre.");
+                return;
+            }
+
+
             Console.Write("Precio: ");
             if (!decimal.TryParse(Console.ReadLine(), out decimal precio)
                 || precio <= 0)
